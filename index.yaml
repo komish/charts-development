@@ -72,6 +72,40 @@ entries:
     urls:
     - https://github.com/openshift-helm-charts/charts/releases/download/castai-castai-agent-0.52.0/castai-agent-0.52.0.tgz
     version: 0.52.0
+  concerthall-vault:
+  - annotations:
+      charts.openshift.io/digest: sha256:511ded8ed95e9e91c5d1d2ba6f0bd0310a41d89278c0bdb5f4072c0d44bd1039
+      charts.openshift.io/lastCertifiedTimestamp: '2023-10-17T19:40:10.78637+00:00'
+      charts.openshift.io/name: HashiCorp Vault
+      charts.openshift.io/provider: Concert Hall
+      charts.openshift.io/providerType: partner
+      charts.openshift.io/submissionTimestamp: '2023-10-17T19:46:09.001680+00:00'
+      charts.openshift.io/supportedOpenShiftVersions: '>=4.9'
+      charts.openshift.io/testedOpenShiftVersion: '4.12'
+    apiVersion: v2
+    appVersion: 1.13.1
+    description: Official HashiCorp Vault Chart
+    digest: 133d57f915aafbc99fec1d8a7110cdb2169c47b91f93dd7bacb81786c8bed29a
+    home: https://www.vaultproject.io
+    icon: https://github.com/hashicorp/vault/raw/f22d202cde2018f9455dec755118a9b84586e082/Vault_PrimaryLogo_Black.png
+    keywords:
+    - vault
+    - security
+    - encryption
+    - secrets
+    - management
+    - automation
+    - infrastructure
+    kubeVersion: '>= 1.22.0-0'
+    name: vault
+    sources:
+    - https://github.com/hashicorp/vault
+    - https://github.com/hashicorp/vault-helm
+    - https://github.com/hashicorp/vault-k8s
+    - https://github.com/hashicorp/vault-csi-provider
+    urls:
+    - https://github.com/komish/charts-development/releases/download/concerthall-vault-0.24.0+1/vault-0.24.0+1.tgz
+    version: 0.24.0+1
   dh2i-dxemssql:
   - annotations:
       charts.openshift.io/digest: sha256:bba38b72bd647ead19350b86ec60253d203d9465d75efd4c25d210110b77d789
@@ -6574,4 +6608,4 @@ entries:
     urls:
     - https://github.com/openshift-helm-charts/charts/releases/download/zextras-carbonio-23.3.0/carbonio-23.3.0.tgz
     version: 23.3.0
-generated: '2023-09-27T20:27:38.479313+00:00'
+generated: '2023-10-17T19:46:09.001680+00:00'
