@@ -1,0 +1,9 @@
+chart:
+  name: vault
+  shortDescription: A Vault Test
+publicPgpKey: null
+users:
+- githubUsername: komish
+vendor:
+  label: concerthall
+  name: Concert Hall
