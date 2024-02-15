@@ -1,5 +1,5 @@
 chart:
-  name: eap-xp3
+  name: redhat-eap-xp3
   shortDescription: Build and Deploy EAP XP 3 applications on OpenShift
 publicPgpKey: null
 users:
