@@ -1,0 +1,48 @@
+name: "Matrix-based Testing"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  get-features:
+    runs-on: ubuntu-latest
+    outputs:
+      features: ${{ steps.find-features.outputs.features }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: find features
+        id: find-features
+        run: |
+          echo features=$(find . -name '*.feature' | jq -R -s -c 'split("\n")[:-1]') | tee -a $GITHUB_OUTPUT
+  run-tests:
+    runs-on: ubuntu-latest
+    needs: [get-features]
+    strategy:
+      matrix: 
+        feature-file: ${{ fromJson(needs.get-features.outputs.features) }}
+    steps:
+      - name: Checkout Base Branch
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.x Part 1
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Set up Python scripts
+        run: |
+          # set up python scripts
+          echo "set up python script in $PWD"
+          python3 -m venv ve1
+          cd scripts
+          ../ve1/bin/pip3 install -r requirements.txt
+          ../ve1/bin/pip3 install .
+          cd ..
+      - name: Test CI Workflow
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BOT_NAME: ${{ secrets.BOT_NAME }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          PR_BODY: "Triggerd by ${{ github.event.sender.html_url }} from ${{ github.event.repository.html_url }} on `${{ github.event.ref }}`."
+        run: |
+          echo ve1/bin/behave ${{ matrix.feature-file }} --logging-level=WARNING --no-capture --no-color
