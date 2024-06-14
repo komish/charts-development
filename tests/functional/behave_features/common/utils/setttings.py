@@ -3,9 +3,9 @@
 
 GITHUB_BASE_URL = "https://api.github.com"
 # The sandbox repository where we run all our tests on
-TEST_REPO = "openshift-helm-charts/sandbox"
+TEST_REPO = "practice-room/sandbox"
 # The prod repository where we create notification issues
-PROD_REPO = "openshift-helm-charts/charts"
+PROD_REPO = "komish/openshift-helm-charts"
 # The prod branch where we store all chart files
 PROD_BRANCH = "main"
 # (Deprecated) This is used to find chart certification workflow run id

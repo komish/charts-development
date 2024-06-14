@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/.github"
+    schedule:
+      interval: "weekly"
+    groups:
+      actions:
+        applies-to: "version-updates"
+        patterns:
+          - "*"
+  - package-ecosystem: pip
+    groups:
+      testing:
+        applies-to: "version-updates"
+        patterns:
+          - "*"
+    directory: "/scripts"
+    schedule:
+      interval: "monthly"

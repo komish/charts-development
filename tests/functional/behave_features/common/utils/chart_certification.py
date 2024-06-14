@@ -478,6 +478,8 @@ class ChartCertificationE2ETestSingle(ChartCertificationE2ETest):
         bot_name, bot_token = get_bot_name_and_token()
         test_repo = TEST_REPO
 
+        logging.debug(f"bot name was ${bot_name}")
+
         # Storing current branch to checkout after scenario execution
         if os.environ.get("LOCAL_RUN"):
             self.secrets.active_branch = self.repo.active_branch.name
