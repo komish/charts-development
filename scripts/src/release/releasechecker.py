@@ -41,8 +41,16 @@ from tools import gitutils
 VERSION_FILE = "release/release_info.json"
 CHARTS_PR_BASE_REPO = gitutils.CHARTS_REPO
 CHARTS_PR_HEAD_REPO = gitutils.CHARTS_REPO
-DEV_PR_BASE_REPO = gitutils.DEVELOPMENT_REPO
-DEV_PR_HEAD_REPO = gitutils.DEVELOPMENT_REPO
+# DEV_PR_BASE_REPO = gitutils.DEVELOPMENT_REPO
+# DEV_PR_HEAD_REPO = gitutils.DEVELOPMENT_REPO
+# TODO(JOSE): Modifying this is purely for debug purposes, to test release.yml 
+# changes because my development repository has a different naming scheme
+# than what is hardcoded here.
+#
+# To revert: remove the following two lines, this comment, and then uncomment
+# the above lines for the same constants.
+DEV_PR_BASE_REPO = "/charts-development"
+DEV_PR_HEAD_REPO = "/charts-development"
 STAGE_PR_BASE_REPO = gitutils.STAGE_REPO
 STAGE_PR_HEAD_REPO = gitutils.STAGE_REPO
 DEFAULT_BOT_NAME = "openshift-helm-charts-bot"

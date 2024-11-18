@@ -24,6 +24,36 @@ on:
         default: WARNING
         description: |
           Value passed to behave's --logging-level flag.
+      # actions/checkout related inputs used for testing. In some cases behave
+      # calls will use the PR branch instead of the main branch. E.g. went doing
+      # release testing
+      checkout-fetch-depth:
+        type: string
+        required: false
+        default: ""
+        description: |
+          fetch-depth flag to actions/checkout.
+          
+          If setting to a pull request, caller is responsible 
+          for verifying the user is a trusted user.
+      checkout-repository:
+        type: string
+        required: false
+        default: ""
+        description: |
+          repository flag to actions/checkout
+          
+          If setting to a pull request, caller is responsible 
+          for verifying the user is a trusted user.
+      checkout-ref:
+        type: string
+        required: false
+        default: ""
+        description: |
+          ref flag to actions/checkout
+          
+          If setting to a pull request, caller is responsible 
+          for verifying the user is a trusted user.
     secrets:
       # NOTE(komish): Not technically secret, but must be listed as a secret
       # because you can't pass the ${{ secrets }} context as an input in the
@@ -32,29 +62,31 @@ on:
         required: true
         description: |
           The name of the GitHub user that will send pull requests.
-      # github-token:
-      #   description: TODO
-      #   required: true
       bot-token:
         description: |
           A GitHub token for the bot user that will initiate pull 
           requests for testing. Should NOT be set to GITHUB_TOKEN.
         required: true
-# env:
-#   GITHUB_TOKEN: ${{ secrets.github-token }}
 jobs:
   get-features:
     runs-on: ubuntu-latest
     outputs:
       features: ${{ steps.find-features.outputs.features }}
     steps:
-      - name: Checkout Base Branch
+      - name: Checkout Repo
         uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.checkout-ref }}
+          repository: ${{ inputs.checkout-repository }}
+          fetch-depth: ${{ inputs.checkout-fetch-depth }}
       - name: find features
         id: find-features
         run: |
           cd tests/functional/behave_features
-          echo features=$(find . -name '*.feature' | sed -e 's%\./%%g' | jq -R -s -c 'split("\n")[:-1]') | tee -a $GITHUB_OUTPUT
+          # echo features=$(find . -name '*.feature' | sed -e 's%\./%%g' | jq -R -s -c 'split("\n") | del(.[] | select(length == 0))') | tee -a $GITHUB_OUTPUT
+          # NOTE(JOSE): temporarily restrict this to a small number of tests for debugging other things.
+          # To Revert: remove the next line, and uncomment the line previous this comment.
+          echo features=$(find . -name '*.feature' | sed -e 's%\./%%g' | jq -R -s -c 'split("\n") | del(.[] | select(length == 0))[:2]') | tee -a $GITHUB_OUTPUT
   run-tests:
     runs-on: ubuntu-latest
     needs: [get-features]
