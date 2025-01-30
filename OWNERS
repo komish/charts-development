@@ -8,6 +8,7 @@ approvers:
 - OchiengEd
 - openshift-helm-charts-bot
 - acornett21
+- dependabot[bot]
 
 reviewers:
 - komish
