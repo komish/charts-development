@@ -24,7 +24,7 @@ jobs:
   analyze:
     name: Analyze (${{ matrix.language }})
     runs-on: ubuntu-24.04
-    if: github.repository == 'openshift-helm-charts/development'
+    # if: github.repository == 'openshift-helm-charts/development'
     permissions:
       # required for all workflows
       security-events: write
