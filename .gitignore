@@ -38,3 +38,9 @@ venv.*/
 
 # For Pyenv users
 .python-version
+
+# Claude Code
+# Local versions of existing files
+.claude/settings.local.json
+CLAUDE.local.md
+AGENT.local.md

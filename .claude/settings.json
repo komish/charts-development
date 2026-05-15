@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Agent(ci-sandbox-investigator)",
+      "Agent(ci-log-analyzer)",
+      "Agent(github-status-checker)",
+      "Bash(gh auth status)",
+      "Bash(gh run view *)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr checks *)",
+      "Bash(gh api repos/openshift-helm-charts/*/actions/runs/* *)",
+      "Bash(gh api repos/openshift-helm-charts/*/issues/*/comments *)",
+      "Bash(grep *)",
+      "Bash(rg *)",
+      "Bash(find *)",
+      "Bash(ls *)",
+      "Bash(cat /tmp/*)",
+      "Bash(wc *)",
+      "Bash(tail *)",
+      "Bash(head *)",
+      "Write(*-report-*.md)",
+      "WebFetch(domain:githubstatus.com)"
+    ]
+  }
+}
